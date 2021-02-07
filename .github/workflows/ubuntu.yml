@@ -1,0 +1,31 @@
+name: Ubuntu
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+    steps:
+    - name: dependencies
+      run: sudo apt-get update && sudo apt-get install -yq libtool-bin libvorbisidec-dev
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Checkout submodules
+      run: git submodule update --init --recursive
+    - name: cache boost
+      id: cache-boost
+      uses: actions/cache@v2
+      with:
+        path: boost_1_75_0
+        key: ${{ runner.os }}-boost
+    - name: get boost
+      if: steps.cache-boost.outputs.cache-hit != 'true'
+      run: wget https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.bz2 && tar xjf boost_1_75_0.tar.bz2
+    - name: build aar
+      run: NDK_DIR=$ANDROID_NDK_HOME ./build_android.sh
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: develop_snapshot_amd64-${{github.sha}}
+        path: /home/runner/work/snapcast-deps/snapcast-deps/build/aar/*.aar

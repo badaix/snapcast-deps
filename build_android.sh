@@ -179,10 +179,9 @@ build_soxr arm64-v8a
 
 cd ${BASEDIR}
 ./make_aar.sh build/aar/ flac 1.3.3 ./build/android/ libFLAC.a FLAC
-./make_aar.sh build/aar/ oboe 1.5.0 ./build/android/ liboboe.a oboe
 ./make_aar.sh build/aar/ ogg 1.3.4 ./build/android/ libogg.a ogg
 ./make_aar.sh build/aar/ opus 1.1.2 ./build/android/ libopus.a opus
-./make_aar.sh build/aar/ soxr 0.1.3 ./build/android/ libsoxr.a soxr.h
 ./make_aar.sh build/aar/ tremor 1.0.0 ./build/android/ libvorbisidec.a tremor
+./make_aar.sh build/aar/ oboe 1.5.0 ./build/android/ liboboe.a oboe
+./make_aar.sh build/aar/ soxr 0.1.3 ./build/android/ libsoxr.a soxr.h
 ./make_aar.sh build/aar/ boost 1.75.0 ./build/android/ "" boost_1_75_0/boost
-

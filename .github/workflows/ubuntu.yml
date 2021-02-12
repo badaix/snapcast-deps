@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: dependencies
-      run: sudo apt-get update && sudo apt-get install -yq libtool-bin libvorbisidec-dev
+      run: sudo apt-get update && sudo apt-get install -yq libtool-bin libvorbisidec-dev curl
     - name: Checkout
       uses: actions/checkout@v2
     - name: Checkout submodules
@@ -24,6 +24,35 @@ jobs:
       run: wget https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.bz2 && tar xjf boost_1_75_0.tar.bz2
     - name: build aar
       run: NDK_DIR=$ANDROID_NDK_HOME ./build_android.sh
+    - name: github package
+      run: |
+        echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>flac</artifactId><version>1.3.3.2</version></project>" > /home/runner/work/snapcast-deps/flac-1.3.3.pom
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/flac/1.3.3.2/flac-1.3.3.2.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/flac-1.3.3.pom" -vvv
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/flac/1.3.3.2/flac-1.3.3.2.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/flac-1.3.3.aar" -vvv
+
+        echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>ogg</artifactId><version>1.3.4</version></project>" > /home/runner/work/snapcast-deps/ogg-1.3.4.pom
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/ogg/1.3.4/ogg-1.3.4.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/ogg-1.3.4.pom" -vvv
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/ogg/1.3.4/ogg-1.3.4.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/ogg-1.3.4.aar" -vvv
+        
+        echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>opus</artifactId><version>1.1.2</version></project>" > /home/runner/work/snapcast-deps/opus-1.1.2.pom
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/opus/1.1.2/opus-1.1.2.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/opus-1.1.2.pom" -vvv
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/opus/1.1.2/opus-1.1.2.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/opus-1.1.2.aar" -vvv
+
+        echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>tremor</artifactId><version>1.0.0</version></project>" > /home/runner/work/snapcast-deps/tremor-1.0.0.pom
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/tremor/1.0.0/tremor-1.0.0.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/tremor-1.0.0.pom" -vvv
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/tremor/1.0.0/tremor-1.0.0.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/tremor-1.0.0.aar" -vvv
+        
+        echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>oboe</artifactId><version>1.5.0</version></project>" > /home/runner/work/snapcast-deps/oboe-1.5.0.pom
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/oboe/1.5.0/oboe-1.5.0.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/oboe-1.5.0.pom" -vvv
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/oboe/1.5.0/oboe-1.5.0.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/oboe-1.5.0.aar" -vvv
+        
+        echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>soxr</artifactId><version>0.1.3.2</version></project>" > /home/runner/work/snapcast-deps/soxr-0.1.3.pom
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/soxr/0.1.3.2/soxr-0.1.3.2.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/soxr-0.1.3.pom" -vvv
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/soxr/0.1.3.2/soxr-0.1.3.2.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/soxr-0.1.3.aar" -vvv
+        
+        echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>boost</artifactId><version>1.75.0</version></project>" > /home/runner/work/snapcast-deps/boost-1.75.0.pom
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/boost/1.75.0/boost-1.75.0.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/boost-1.75.0.pom" -vvv
+        curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/boost/1.75.0/boost-1.75.0.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/boost-1.75.0.aar" -vvv
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:

@@ -55,7 +55,7 @@ function build_flac
 
 	cd ${BASEDIR}/externals/flac
 	./autogen.sh
-	./configure --host=${ARCH} --disable-ogg --prefix=${SYSROOT}/usr/local/
+	./configure --host=${ARCH} --disable-ogg --disable-asm-optimizations --disable-doxygen-docs --disable-xmms-plugin --disable-examples --prefix=${SYSROOT}/usr/local/
 	make -j 4
 	make install
 	make clean
@@ -178,7 +178,7 @@ build_oboe arm64-v8a
 build_soxr arm64-v8a
 
 cd ${BASEDIR}
-./make_aar.sh build/aar/ flac 1.3.3.2 ./build/android/ libFLAC.a FLAC
+./make_aar.sh build/aar/ flac 1.3.3.3 ./build/android/ libFLAC.a FLAC
 ./make_aar.sh build/aar/ ogg 1.3.4 ./build/android/ libogg.a ogg
 ./make_aar.sh build/aar/ opus 1.1.2 ./build/android/ libopus.a opus
 ./make_aar.sh build/aar/ tremor 1.0.0 ./build/android/ libvorbisidec.a tremor

@@ -70,5 +70,5 @@ jobs:
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: develop_snapshot_amd64-${{github.sha}}
+        name: develop_snapshot-${{github.sha}}
         path: /home/runner/work/snapcast-deps/snapcast-deps/build/aar/*.aar

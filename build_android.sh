@@ -184,4 +184,4 @@ cd ${BASEDIR}
 ./make_aar.sh build/aar/ tremor 1.0.0 ./build/android/ libvorbisidec.a tremor
 ./make_aar.sh build/aar/ oboe 1.5.0 ./build/android/ liboboe.a oboe
 ./make_aar.sh build/aar/ soxr 0.1.3.2 ./build/android/ libsoxr.a soxr.h
-./make_aar.sh build/aar/ boost 1.75.0 ./build/android/ "" boost_1_75_0/boost
+./make_aar.sh build/aar/ boost 1.76.0 ./build/android/ "" boost_1_76_0/boost

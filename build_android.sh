@@ -149,12 +149,25 @@ function build_soxr
 	rm -rf build
 }
 
+function build_vorbis
+{
+    prepare $1
+
+    cd ${BASEDIR}/externals/vorbis
+	./autogen.sh
+	./configure --host=${ARCH} --prefix=${SYSROOT}/usr/local/
+	make -j 4
+	make install
+	make clean
+}
+
 build_flac x86
 build_ogg x86
 build_opus x86
 build_tremor x86
 build_oboe x86
 build_soxr x86
+build_vorbis x86
 
 build_flac x86_64
 build_ogg x86_64
@@ -162,6 +175,7 @@ build_opus x86_64
 build_tremor x86_64
 build_oboe x86_64
 build_soxr x86_64
+build_vorbis x86_64
 
 build_flac armeabi-v7a
 build_ogg armeabi-v7a
@@ -169,6 +183,7 @@ build_opus armeabi-v7a
 build_tremor armeabi-v7a
 build_oboe armeabi-v7a
 build_soxr armeabi-v7a
+build_vorbis armeabi-v7a
 
 build_flac arm64-v8a
 build_ogg arm64-v8a
@@ -176,6 +191,7 @@ build_opus arm64-v8a
 build_tremor arm64-v8a
 build_oboe arm64-v8a
 build_soxr arm64-v8a
+build_vorbis arm64-v8a
 
 cd ${BASEDIR}
 ./make_aar.sh build/aar/ flac 1.3.3.3 ./build/android/ libFLAC.a FLAC
@@ -184,4 +200,5 @@ cd ${BASEDIR}
 ./make_aar.sh build/aar/ tremor 1.0.0 ./build/android/ libvorbisidec.a tremor
 ./make_aar.sh build/aar/ oboe 1.5.0 ./build/android/ liboboe.a oboe
 ./make_aar.sh build/aar/ soxr 0.1.3.2 ./build/android/ libsoxr.a soxr.h
+./make_aar.sh build/aar/ vorbis 1.3.7 ./build/android/ libvorbis.a vorbis
 ./make_aar.sh build/aar/ boost 1.76.0 ./build/android/ "" boost_1_76_0/boost

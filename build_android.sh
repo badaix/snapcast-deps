@@ -201,4 +201,4 @@ cd ${BASEDIR}
 ./make_aar.sh build/aar/ oboe 1.6.1 ./build/android/ liboboe.a oboe
 ./make_aar.sh build/aar/ soxr 0.1.3 ./build/android/ libsoxr.a soxr.h
 ./make_aar.sh build/aar/ vorbis 1.3.7 ./build/android/ libvorbis.a vorbis
-./make_aar.sh build/aar/ boost 1.77.0 ./build/android/ "" boost_1_77_0/boost
+./make_aar.sh build/aar/ boost 1.78.0 ./build/android/ "" boost_1_78_0/boost

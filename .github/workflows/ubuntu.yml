@@ -51,7 +51,7 @@ jobs:
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv
 
         LIB="oboe"
-        VERSION="1.6.1"
+        VERSION="1.7.0"
         echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>$LIB</artifactId><version>$VERSION</version></project>" > /home/runner/work/snapcast-deps/$LIB-$VERSION.pom
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/$LIB-$VERSION.pom" -vvv
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv

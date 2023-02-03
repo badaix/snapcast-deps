@@ -74,7 +74,7 @@ jobs:
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/$LIB-$VERSION.pom" -vvv
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv
     - name: Archive artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: develop_snapshot-${{github.sha}}
         path: /home/runner/work/snapcast-deps/snapcast-deps/build/aar/*.aar

@@ -1,6 +1,6 @@
 [submodule "externals/flac"]
 	path = externals/flac
-	url = https://gitlab.xiph.org/xiph/flac.git
+	url = https://github.com/xiph/flac.git
 [submodule "externals/ogg"]
 	path = externals/ogg
 	url = https://gitlab.xiph.org/xiph/ogg.git

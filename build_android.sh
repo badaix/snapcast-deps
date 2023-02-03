@@ -197,7 +197,7 @@ build_soxr arm64-v8a
 build_vorbis arm64-v8a
 
 cd ${BASEDIR}
-./make_aar.sh build/aar/ flac 1.4.1 ./build/android/ libFLAC.a FLAC
+./make_aar.sh build/aar/ flac 1.4.2 ./build/android/ libFLAC.a FLAC
 ./make_aar.sh build/aar/ ogg 1.3.5 ./build/android/ libogg.a ogg
 ./make_aar.sh build/aar/ opus 1.1.2 ./build/android/ libopus.a opus
 ./make_aar.sh build/aar/ tremor 1.0.0 ./build/android/ libvorbisidec.a tremor

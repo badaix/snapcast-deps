@@ -13,7 +13,7 @@ function prepare
         ARCH="x86"
         CPPFLAGS="-DLITTLE_ENDIAN=1234 -DBIG_ENDIAN=4321 -DBYTE_ORDER=LITTLE_ENDIAN"
         TARGET="i686-linux-android"
-        API=21
+        API=19
     elif [ "$1" = "x86_64" ] ; then
         ARCH="x86_64"
 	    CPPFLAGS="-DLITTLE_ENDIAN=1234 -DBIG_ENDIAN=4321 -DBYTE_ORDER=LITTLE_ENDIAN"
@@ -23,7 +23,7 @@ function prepare
         ARCH="arm"
 	    CPPFLAGS="-U_ARM_ASSEM_"
         TARGET="armv7a-linux-androideabi"
-	    API=21
+	    API=19
     elif [ "$1" = "arm64-v8a" ] ; then
         ARCH="aarch64"
 	    CPPFLAGS="-U_ARM_ASSEM_ -DLITTLE_ENDIAN=1234 -DBIG_ENDIAN=4321 -DBYTE_ORDER=LITTLE_ENDIAN"
@@ -86,6 +86,8 @@ function build_opus
 	make -j 4
 	make install
 	make clean
+	rm test-driver
+	rm celt/arm/armopts.s
 }
 
 function build_tremor

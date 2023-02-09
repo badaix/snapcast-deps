@@ -95,8 +95,7 @@ function build_tremor
     prepare $1
 
 	cd ${BASEDIR}/externals/tremor
-	./autogen.sh
-	./configure --host=${ARCH} --with-pic --prefix=${SYSROOT}/usr/local/ --with-ogg=${SYSROOT}/usr/local/ --with-ogg-libraries=${SYSROOT}/usr/local/lib --with-ogg-includes=${SYSROOT}/usr/local/include/ogg
+	./autogen.sh --host=${ARCH} --with-pic --prefix=${SYSROOT}/usr/local/ --with-ogg=${SYSROOT}/usr/local/ --with-ogg-libraries=${SYSROOT}/usr/local/lib --with-ogg-includes=${SYSROOT}/usr/local/include/ogg
 	make -j 4
 	make install
 	make clean

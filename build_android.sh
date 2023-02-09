@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [ -z "$NDK_DIR" ]; then
   echo "Please set NDK_DIR to the Android NDK folder"

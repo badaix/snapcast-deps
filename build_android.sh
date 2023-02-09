@@ -55,7 +55,7 @@ function build_flac
 
 	cd ${BASEDIR}/externals/flac
 	./autogen.sh
-	./configure --host=${ARCH} --disable-ogg --disable-asm-optimizations --disable-doxygen-docs --disable-xmms-plugin --disable-examples --prefix=${SYSROOT}/usr/local/
+	./configure --host=${ARCH} --disable-ogg --disable-asm-optimizations --disable-doxygen-docs --disable-xmms-plugin --disable-programs --disable-examples --prefix=${SYSROOT}/usr/local/
 	make -j 4
 	make install
 	make clean

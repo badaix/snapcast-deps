@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [ -z "$NDK_DIR" ]; then
   echo "Please set NDK_DIR to the Android NDK folder"
@@ -55,8 +56,8 @@ function build_flac
 
 	cd ${BASEDIR}/externals/flac
 	./autogen.sh
-	./configure --host=${ARCH} --disable-ogg --disable-asm-optimizations --disable-doxygen-docs --disable-xmms-plugin --disable-examples --prefix=${SYSROOT}/usr/local/
-	make -j 4
+	./configure --host=${ARCH} --disable-ogg --disable-asm-optimizations --disable-doxygen-docs --disable-xmms-plugin --disable-programs --disable-examples --prefix=${SYSROOT}/usr/local/
+	make -j "$(nproc)"
 	make install
 	make clean
 	rm -f *~
@@ -70,7 +71,7 @@ function build_ogg
 	cd ${BASEDIR}/externals/ogg
 	./autogen.sh
 	./configure --host=${ARCH} --with-pic --prefix=${SYSROOT}/usr/local/
-	make -j 4
+	make -j "$(nproc)"
 	make install
 	make clean
 	rm -f *~
@@ -83,7 +84,7 @@ function build_opus
     cd ${BASEDIR}/externals/opus
 	./autogen.sh
 	./configure --host=${ARCH} --prefix=${SYSROOT}/usr/local/
-	make -j 4
+	make -j "$(nproc)"
 	make install
 	make clean
 	rm test-driver
@@ -95,9 +96,8 @@ function build_tremor
     prepare $1
 
 	cd ${BASEDIR}/externals/tremor
-	./autogen.sh
-	./configure --host=${ARCH} --with-pic --prefix=${SYSROOT}/usr/local/ --with-ogg=${SYSROOT}/usr/local/ --with-ogg-libraries=${SYSROOT}/usr/local/lib --with-ogg-includes=${SYSROOT}/usr/local/include/ogg
-	make -j 4
+	./autogen.sh --host=${ARCH} --with-pic --prefix=${SYSROOT}/usr/local/ --with-ogg=${SYSROOT}/usr/local/ --with-ogg-libraries=${SYSROOT}/usr/local/lib --with-ogg-includes=${SYSROOT}/usr/local/include/ogg
+	make -j "$(nproc)"
 	make install
 	make clean
 	rm -rf .deps/
@@ -131,7 +131,7 @@ function build_oboe
 	mkdir build
 	cd build
 	cmake ..
-	make -j 4
+	make -j "$(nproc)"
 	make DESTDIR=${SYSROOT} install
 	make clean
 	cd ..
@@ -146,7 +146,7 @@ function build_soxr
 	mkdir build
 	cd build
 	cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTS=OFF -DWITH_OPENMP=OFF ..
-	make -j 4
+	make -j "$(nproc)"
 	make DESTDIR=${SYSROOT} install
 	make clean
 	cd ..
@@ -160,7 +160,7 @@ function build_vorbis
     cd ${BASEDIR}/externals/vorbis
 	./autogen.sh
 	./configure --host=${ARCH} --prefix=${SYSROOT}/usr/local/
-	make -j 4
+	make -j "$(nproc)"
 	make install
 	make clean
 	rm -f *~

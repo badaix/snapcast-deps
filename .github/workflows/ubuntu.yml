@@ -17,17 +17,17 @@ jobs:
       id: cache-boost
       uses: actions/cache@v3
       with:
-        path: boost_1_81_0
+        path: boost_1_85_0
         key: ${{ runner.os }}-boost
     - name: get boost
       if: steps.cache-boost.outputs.cache-hit != 'true'
-      run: wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2 && tar xjf boost_1_81_0.tar.bz2
+      run: wget https://boostorg.jfrog.io/artifactory/main/release/1.85.0/source/boost_1_85_0.tar.bz2 && tar xjf boost_1_85_0.tar.bz2
     - name: build aar
       run: NDK_DIR=$ANDROID_NDK_HOME ./build_android.sh
     - name: github package
       run: |
         LIB="flac"
-        VERSION="1.4.2"
+        VERSION="1.4.3"
         echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>$LIB</artifactId><version>$VERSION</version></project>" > /home/runner/work/snapcast-deps/$LIB-$VERSION.pom
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/$LIB-$VERSION.pom" -vvv
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv
@@ -45,13 +45,13 @@ jobs:
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv
 
         LIB="tremor"
-        VERSION="1.0.0"
+        VERSION="1.0.1"
         echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>$LIB</artifactId><version>$VERSION</version></project>" > /home/runner/work/snapcast-deps/$LIB-$VERSION.pom
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/$LIB-$VERSION.pom" -vvv
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv
 
         LIB="oboe"
-        VERSION="1.7.0"
+        VERSION="1.8.1"
         echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>$LIB</artifactId><version>$VERSION</version></project>" > /home/runner/work/snapcast-deps/$LIB-$VERSION.pom
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/$LIB-$VERSION.pom" -vvv
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv
@@ -63,7 +63,7 @@ jobs:
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv
 
         LIB="boost"
-        VERSION="1.81.0"
+        VERSION="1.85.0"
         echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>$LIB</artifactId><version>$VERSION</version></project>" > /home/runner/work/snapcast-deps/$LIB-$VERSION.pom
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/$LIB-$VERSION.pom" -vvv
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv

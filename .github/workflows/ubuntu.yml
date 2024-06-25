@@ -27,7 +27,7 @@ jobs:
     - name: github package
       run: |
         LIB="flac"
-        VERSION="1.4.3"
+        VERSION="1.4.2"
         echo "<project><modelVersion>4.0.0</modelVersion><groupId>com.github.badaix</groupId><artifactId>$LIB</artifactId><version>$VERSION</version></project>" > /home/runner/work/snapcast-deps/$LIB-$VERSION.pom
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/$LIB-$VERSION.pom" -vvv
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv

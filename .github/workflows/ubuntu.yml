@@ -10,12 +10,12 @@ jobs:
     - name: dependencies
       run: sudo apt-get update && sudo apt-get install -yq libtool-bin libvorbisidec-dev curl
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Checkout submodules
       run: git submodule update --init --recursive
     - name: cache boost
       id: cache-boost
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: boost_1_85_0
         key: ${{ runner.os }}-boost
@@ -74,7 +74,7 @@ jobs:
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.pom" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/$LIB-$VERSION.pom" -vvv
         curl -X PUT "https://maven.pkg.github.com/badaix/snapcast-deps/com/github/badaix/$LIB/$VERSION/$LIB-$VERSION.aar" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" --upload-file "/home/runner/work/snapcast-deps/snapcast-deps/build/aar/$LIB-$VERSION.aar" -vvv
     - name: Archive artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: develop_snapshot-${{github.sha}}
         path: /home/runner/work/snapcast-deps/snapcast-deps/build/aar/*.aar

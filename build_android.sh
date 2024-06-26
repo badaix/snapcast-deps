@@ -130,8 +130,8 @@ function build_oboe
 	cd ${BASEDIR}/externals/oboe
 	mkdir build
 	cd build
-	cmake ..
-	make -j 4
+	cmake -DCMAKE_BUILD_TYPE=Release ..
+	make -j 4 VERBOSE=1
 	make DESTDIR=${SYSROOT} install
 	make clean
 	cd ..
@@ -145,8 +145,8 @@ function build_soxr
 	cd ${BASEDIR}/externals/soxr
 	mkdir build
 	cd build
-	cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTS=OFF -DWITH_OPENMP=OFF ..
-	make -j 4
+	cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTS=OFF -DWITH_OPENMP=OFF ..
+	make -j 4 VERBOSE=1
 	make DESTDIR=${SYSROOT} install
 	make clean
 	cd ..

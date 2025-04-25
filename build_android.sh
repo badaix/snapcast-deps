@@ -167,6 +167,29 @@ function build_vorbis
 	make clean
 	rm -f *~
 }
+function build_openssl
+{
+    prepare $1
+
+	cd ${BASEDIR}/externals/openssl
+
+    if [ "$1" = "x86" ]; then
+        OPENSSL_TARGET="android-x86"
+    elif [ "$1" = "x86_64" ]; then
+        OPENSSL_TARGET="android-x86_64"
+    elif [ "$1" = "armeabi-v7a" ]; then
+        OPENSSL_TARGET="android-arm"
+    elif [ "$1" = "arm64-v8a" ]; then
+        OPENSSL_TARGET="android-arm64"
+    fi
+
+	export ANDROID_NDK_ROOT=$NDK_DIR
+	PATH=$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
+    ./config ${OPENSSL_TARGET} -D__ANDROID_API__=${API} -static no-asm no-shared no-tests --prefix=${SYSROOT}/usr/local/
+    make -j 4
+    make install_sw
+    make clean
+}
 
 build_flac x86
 build_ogg x86
@@ -175,6 +198,7 @@ build_tremor x86
 build_oboe x86
 build_soxr x86
 build_vorbis x86
+build_openssl x86
 
 build_flac x86_64
 build_ogg x86_64
@@ -183,6 +207,7 @@ build_tremor x86_64
 build_oboe x86_64
 build_soxr x86_64
 build_vorbis x86_64
+build_openssl x86_64
 
 build_flac armeabi-v7a
 build_ogg armeabi-v7a
@@ -191,6 +216,7 @@ build_tremor armeabi-v7a
 build_oboe armeabi-v7a
 build_soxr armeabi-v7a
 build_vorbis armeabi-v7a
+build_openssl armeabi-v7a
 
 build_flac arm64-v8a
 build_ogg arm64-v8a
@@ -199,6 +225,7 @@ build_tremor arm64-v8a
 build_oboe arm64-v8a
 build_soxr arm64-v8a
 build_vorbis arm64-v8a
+build_openssl arm64-v8a
 
 cd ${BASEDIR}
 ./make_aar.sh build/aar/ flac 1.4.2 ./build/android/ libFLAC.a FLAC
@@ -209,3 +236,4 @@ cd ${BASEDIR}
 ./make_aar.sh build/aar/ soxr 0.1.3 ./build/android/ libsoxr.a soxr.h
 ./make_aar.sh build/aar/ vorbis 1.3.7 ./build/android/ libvorbis.a vorbis
 ./make_aar.sh build/aar/ boost 1.85.0 ./build/android/ "" boost_1_85_0/boost
+./make_aar.sh build/aar/ openssl 3.2.0 ./build/android/ "libcrypto.a libssl.a" openssl

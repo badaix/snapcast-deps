@@ -12,7 +12,7 @@ echo "name: $aar_name"
 echo "version: $aar_version"
 
 has_libs=true
-if [ -z "$libs" ] ; then
+if [ -z "$libs" ]; then
     has_libs=false
 fi
 
@@ -25,7 +25,7 @@ printf '{\n    "schema_version": 1,\n    "name": "%s",\n    "version": "%s",\n  
 # Create AndroidManifest.xml
 printf '<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.badaix.%s" android:versionCode="1" android:versionName="1.0">\n	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="29"/>\n</manifest>' $aar_name > $aar_root/AndroidManifest.xml
 
-if [ "$has_libs" = true ] ; then
+if [ "$has_libs" = true ]; then
     for lib_file in $libs; do
         # Extract library name without 'lib' prefix and '.a' suffix
         lib_name=$(echo "$lib_file" | sed 's/lib\(.*\)\.a/\1/')
@@ -49,7 +49,7 @@ if [ "$has_libs" = true ] ; then
         # Create module.json for this library
         if [ "$aar_name" = "openssl" ]; then
             echo '{}' > $aar_root/prefab/modules/$lib_name/module.json
-        else    
+        else
             echo -e '{\n    "export_libraries": [],\n    "library_name": "'$lib_name'",\n    "android": {\n      "export_libraries": [],\n      "library_name": "'$lib_name'"\n    }\n}' > $aar_root/prefab/modules/$lib_name/module.json
         fi
 

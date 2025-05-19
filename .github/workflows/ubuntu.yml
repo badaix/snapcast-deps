@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - name: dependencies
       run: sudo apt-get update && sudo apt-get install -yq libtool-bin libvorbisidec-dev curl

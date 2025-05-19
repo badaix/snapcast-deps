@@ -54,7 +54,7 @@ function build_flac
     prepare $1
 
 	cd ${BASEDIR}/externals/flac
-	CFLAGS="-Wn-oimplicit-function-declaration ${CFLAGS}"
+	CFLAGS="-Wno-implicit-function-declaration ${CFLAGS}"
 	export CFLAGS=${CFLAGS}
 	./autogen.sh
 	./configure --host=${ARCH} --disable-ogg --disable-asm-optimizations --disable-doxygen-docs --disable-xmms-plugin --disable-examples --prefix=${SYSROOT}/usr/local/

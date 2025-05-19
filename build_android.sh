@@ -54,6 +54,8 @@ function build_flac
     prepare $1
 
 	cd ${BASEDIR}/externals/flac
+	CFLAGS="-Wn-oimplicit-function-declaration ${CFLAGS}"
+	export CFLAGS=${CFLAGS}
 	./autogen.sh
 	./configure --host=${ARCH} --disable-ogg --disable-asm-optimizations --disable-doxygen-docs --disable-xmms-plugin --disable-examples --prefix=${SYSROOT}/usr/local/
 	make -j 4
@@ -167,36 +169,36 @@ function build_vorbis
 }
 
 build_flac x86
-build_ogg x86
-build_opus x86
-build_tremor x86
-build_oboe x86
-build_soxr x86
-build_vorbis x86
+# build_ogg x86
+# build_opus x86
+# build_tremor x86
+# build_oboe x86
+# build_soxr x86
+# build_vorbis x86
 
-build_flac x86_64
-build_ogg x86_64
-build_opus x86_64
-build_tremor x86_64
-build_oboe x86_64
-build_soxr x86_64
-build_vorbis x86_64
+# build_flac x86_64
+# build_ogg x86_64
+# build_opus x86_64
+# build_tremor x86_64
+# build_oboe x86_64
+# build_soxr x86_64
+# build_vorbis x86_64
 
-build_flac armeabi-v7a
-build_ogg armeabi-v7a
-build_opus armeabi-v7a
-build_tremor armeabi-v7a
-build_oboe armeabi-v7a
-build_soxr armeabi-v7a
-build_vorbis armeabi-v7a
+# build_flac armeabi-v7a
+# build_ogg armeabi-v7a
+# build_opus armeabi-v7a
+# build_tremor armeabi-v7a
+# build_oboe armeabi-v7a
+# build_soxr armeabi-v7a
+# build_vorbis armeabi-v7a
 
-build_flac arm64-v8a
-build_ogg arm64-v8a
-build_opus arm64-v8a
-build_tremor arm64-v8a
-build_oboe arm64-v8a
-build_soxr arm64-v8a
-build_vorbis arm64-v8a
+# build_flac arm64-v8a
+# build_ogg arm64-v8a
+# build_opus arm64-v8a
+# build_tremor arm64-v8a
+# build_oboe arm64-v8a
+# build_soxr arm64-v8a
+# build_vorbis arm64-v8a
 
 cd ${BASEDIR}
 ./make_aar.sh build/aar/ flac 1.4.2 ./build/android/ libFLAC.a FLAC

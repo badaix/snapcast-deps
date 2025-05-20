@@ -47,11 +47,11 @@ if [ "$has_libs" = true ]; then
         echo '{"abi":"x86_64","api":21,"ndk":21,"stl":"c++_shared"}' > $aar_libs/android.x86_64/abi.json
 
         # Create module.json for this library
-        if [ "$aar_name" = "openssl" ]; then
-            echo '{}' > $aar_root/prefab/modules/$lib_name/module.json
-        else
-            echo -e '{\n    "export_libraries": [],\n    "library_name": "'$lib_name'",\n    "android": {\n      "export_libraries": [],\n      "library_name": "'$lib_name'"\n    }\n}' > $aar_root/prefab/modules/$lib_name/module.json
-        fi
+        # if [ "$aar_name" = "openssl" ]; then
+        #     echo '{}' > $aar_root/prefab/modules/$lib_name/module.json
+        # else
+        echo -e '{\n    "export_libraries": [],\n    "library_name": "'$lib_name'",\n    "android": {\n      "export_libraries": [],\n      "library_name": "'$lib_name'"\n    }\n}' > $aar_root/prefab/modules/$lib_name/module.json
+        # fi
 
         # Copy the library file for each architecture
         cp "$build_root/x86_64-linux-android/usr/local/lib/$lib_file" "$aar_libs/android.x86_64/$lib_file"
